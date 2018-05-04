@@ -6,19 +6,19 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 11:18:30 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 16:11:09 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-void		free_char(char **line)
+void		free_char(char **line, int size)
 {
 	int		i;
 
 	i = -1;
-	while (line[++i])
+	while (++i <= size)
 		ft_strdel(&(line[i]));
 	free(line);
 }
@@ -31,9 +31,9 @@ char		**realloc_char(char **line, int size)
 	i = -1;
 	if (!(new = (char **)(malloc(sizeof(char *) * size + 100))))
 		return (NULL);
-	while (++i < size)
+	while (++i <= size)
 		new[i] = ft_strdup(line[i]);
-	free_char(line);
+	free_char(line, size);
 	return (new);
 }
 

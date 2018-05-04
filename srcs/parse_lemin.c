@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   parse_lemin.c                                    .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/04/20 15:11:28 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 18:00:03 by xamartin    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
-/* ************************************************************************** */
-
 #include "../includes/lem-in.h"
 
 static int	just_nu(char *str)
@@ -130,7 +117,7 @@ int			parse_lemin(t_save *save, t_room **room)
 	}
 	else
 		ft_printf(RED"ERROR"RESET);
-	free(save);
+	free_save(save);
 	free(line);
 	return (1);
 }

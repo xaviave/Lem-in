@@ -13,10 +13,10 @@
 
 #include "../includes/lem-in.h"
 
-int			check_name(char **line, t_save *save)
+int		check_name(char **line, t_save *save)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < save->nb_room)
@@ -31,9 +31,9 @@ int			check_name(char **line, t_save *save)
 	return (1);
 }
 
-int			check_room(char *str)
+int		check_room(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != ' ')
@@ -51,10 +51,10 @@ int			check_room(char *str)
 	return (1);
 }
 
-int			check_room_name(t_room **room, t_save *save)
+int		check_room_name(t_room **room, t_save *save)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	**room_name;
 
 	if (!(room_name = (char **)malloc(sizeof(char *) * save->nb_room + 1)))
@@ -73,7 +73,7 @@ int			check_room_name(t_room **room, t_save *save)
 				j++;
 			if (!ft_strcmp(room_name[j], (*room)[i].name))
 			{
-				free_char(room_name);
+				free_char(room_name, save->nb_room);
 				return (0);
 			}
 		}
@@ -84,8 +84,8 @@ int			check_room_name(t_room **room, t_save *save)
 
 void		init_room(char *str, t_room *room, int size)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	*save;
 
 	i = 0;
@@ -110,11 +110,11 @@ void		init_room(char *str, t_room *room, int size)
 	ft_strdel(&save);
 }
 
-int			parse_all_room(char **line, t_save *save, t_room *room)
+int		parse_all_room(char **line, t_save *save, t_room *room)
 {
-	int		i;
-	int		j;
-	int		rooms;
+	int	i;
+	int	j;
+	int	rooms;
 
 	i = 1;
 	j = 1;
