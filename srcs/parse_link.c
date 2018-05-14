@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:40 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 18:01:03 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/14 14:48:10 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,11 +20,11 @@ static void	fill_link(char *here, char *link, t_room *room, t_save *save)
 
 	i = -1;
 	while (++i < save->nb_room)
-		if (!ft_strcmp(save->name[i], here))
+		if (!ft_strcmp(room[i].name, here))
 			nb = i;
 	i = -1;
 	while (++i < save->nb_room)
-		if (!ft_strcmp(save->name[i], link))
+		if (!ft_strcmp(room[i].name, link))
 			break ;
 	if (!room[nb].nb_link)
 	{
@@ -60,7 +60,7 @@ static void	init_link(char *line, t_room *room, t_save *save)
 	ft_strdel(&second);
 }
 
-int			check_link(char *line, t_save *save)
+int			check_link(char *line, t_save *save, t_room *room)
 {
 	int		i;
 	int		good;
@@ -73,7 +73,7 @@ int			check_link(char *line, t_save *save)
 	str = ft_strsub(line, 0, i);
 	i = -1;
 	while (++i < save->nb_room)
-		if (!ft_strcmp(str, save->name[i]))
+		if (!ft_strcmp(str, room[i].name))
 			good++;
 	ft_strdel(&str);
 	i = 0;
@@ -82,7 +82,7 @@ int			check_link(char *line, t_save *save)
 	str = ft_strsub(line, i + 1, ft_strlen(line));
 	i = -1;
 	while (++i < save->nb_room)
-		if (!ft_strcmp(str, save->name[i]))
+		if (!ft_strcmp(str, room[i].name))
 			good++;
 	ft_strdel(&str);
 	if (good != 2)
@@ -90,29 +90,11 @@ int			check_link(char *line, t_save *save)
 	return (1);
 }
 
-int			parse_all_link(char **line, t_save *save, t_room *room)
+int			parse_link(char *line, t_save *save, t_room *room)
 {
-	int		i;
-	int		link;
-
-	link = 0;
-	i = save->begin_link - 1;
-	while (line[++i])
-	{
-		while (line[i][0] == '#')
-		{
-			if (!line[i + 1] && line[i][0])
-				break ;
-				i++;
-		}
-		if (!check_link(line[i], save))
-			break ;
-		else
-		{
-			init_link(line[i], room, save);
-			link++;
-		}
-	}
-	save->nb_link = link;
+	if (!check_link(line, save, room))
+		return (0);
+	save->nb_link += 2;
+	init_link(line, room, save);
 	return (1);
 }

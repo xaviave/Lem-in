@@ -6,35 +6,42 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 16:11:09 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/07 22:55:19 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-void		free_char(char **line, int size)
+void		free_char(char **line)
 {
 	int		i;
 
 	i = -1;
-	while (++i <= size)
+	while (line[++i])
 		ft_strdel(&(line[i]));
 	free(line);
 }
 
-char		**realloc_char(char **line, int size)
+void		realloc_room(t_room *room, int size)
 {
 	int		i;
-	char	**new;
+	t_room	*new;
 
 	i = -1;
-	if (!(new = (char **)(malloc(sizeof(char *) * size + 100))))
-		return (NULL);
-	while (++i <= size)
-		new[i] = ft_strdup(line[i]);
-	free_char(line, size);
-	return (new);
+	if (!(new = (t_room *)malloc(sizeof(t_room) * (size + 101))))
+		return ;
+	while (++i < size)
+	{
+		new[i].name = ft_strdup(room[i].name);
+		new[i].x = room[i].x;
+		new[i].y = room[i].y;
+	}
+	i = -1;
+	while (++i < size)
+		ft_strdel(&(room[i].name));
+	free(room);
+	room = new;
 }
 
 int			*realloc_int(int *tab, int size)
@@ -63,12 +70,12 @@ void		free_save(t_save *save)
 	ft_strdel(&save->start);
 }
 
-void		free_room(t_room **room, t_save *save)
+void		free_room(t_room **room, int size)
 {
 	int		i;
 
 	i = -1;
-	while (++i < save->nb_room)
+	while (++i < size)
 	{
 		ft_strdel(&room[i]->name);
 		ft_strdel(&room[i]->ant_name);

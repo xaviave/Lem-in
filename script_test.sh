@@ -1,10 +1,10 @@
-echo "\nbig -> ok" > rendu
+echo "\nbig -> \033[32mOK\033[0m" > rendu
 ./lem-in < maps/big >> rendu
-echo "\nbig_36 -> ok" >> rendu
+echo "\nbig_36 -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/big_36 >> rendu
 echo "\nbigants" >> rendu
 ./lem-in < maps/bigants >> rendu
-echo "\ncomments -> ok" >> rendu
+echo "\ncomments -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/comments >> rendu
 echo "\ncoor" >> rendu
 ./lem-in < maps/coor >> rendu
@@ -20,13 +20,13 @@ echo "\nillegalname" >> rendu
 ./lem-in < maps/illegalname >> rendu
 echo "\nillegalname1" >> rendu
 ./lem-in < maps/illegalname1 >> rendu
-echo "\nin0 -> ok" >> rendu
+echo "\nin0 -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/in0 >> rendu
-echo "\ninvalidcommand -> ok" >> rendu
+echo "\ninvalidcommand -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/invalidcommand >> rendu
 echo "\ninvalidcommand1" >> rendu
 ./lem-in < maps/invalidcommand1 >> rendu
-echo "\nlopp" >> rendu
+echo "\nloop" >> rendu
 ./lem-in < maps/loop >> rendu
 echo "\nloop1" >> rendu
 ./lem-in < maps/loop1 >> rendu
@@ -44,21 +44,21 @@ echo "\nnostart" >> rendu
 ./lem-in < maps/nostart >> rendu
 echo "\noverflow" >> rendu
 ./lem-in < maps/overflow >> rendu
-echo "\nsamecoor -> ok" >> rendu
+echo "\nsamecoor -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/samecoor >> rendu
-echo "\nshortest -> ok" >> rendu
+echo "\nshortest -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/shortest >> rendu
-echo "\nsimple -> ok" >> rendu
+echo "\nsimple -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/simple >> rendu
-echo "\nsimple1 -> ok" >> rendu
+echo "\nsimple1 -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/simple1 >> rendu
-echo "\nsimple2 -> ok" >> rendu
+echo "\nsimple2 -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/simple2 >> rendu
 echo "\nstartisend" >> rendu
 ./lem-in < maps/startisend >> rendu
 echo "\nunderflow" >> rendu
 ./lem-in < maps/underflow >> rendu
-echo "\nunknownroom -> ok" >> rendu
+echo "\nunknownroom -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/unknownroom >> rendu
 echo "\nwhitespaces" >> rendu
 ./lem-in < maps/whitespaces >> rendu

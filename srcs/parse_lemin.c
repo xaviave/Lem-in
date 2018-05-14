@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   parse_lemin.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
+/*   Updated: 2018/05/14 15:15:05 by xamartin    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "../includes/lem-in.h"
 
 static int	just_nu(char *str)
@@ -18,106 +31,116 @@ static int	just_nu(char *str)
 	return (1);
 }
 
-static int	check_hashtag(char **line, t_room **room)
+static int	check_hashtag(char *line, t_save *save, t_room *room)
 {
 	int		i;
-	int		nb;
 
 	i = -1;
-	nb = 0;
-	while (line[++i])
+	if (save->ok_start == 1)
 	{
-		if (!ft_strcmp(line[i], "##start"))
+		if (check_room(line))
 		{
-			while (line[i] && line[i][0] == '#')
-				i++;
-			if (!check_room(line[i]) || (*room)[0].name || !line[i])
-				return (0);
-			init_room(line[i], *room, 0);
-			line[i][0] = '#';
-			nb++;
+			save->ok_start = 2;
+			init_room(line, room, save->nb_room);
+			save->nb_room++;
 		}
-		else if (!ft_strcmp(line[i], "##end"))
-		{
-			while (line[i] && line[i][0] == '#')
-				i++;
-			if (!check_room(line[i]) || (*room)[1].name || !line[i])
-				return (0);
-			init_room(line[i], *room, 1);
-			line[i][0] = '#';
-			nb++;
-		}
+		else
+			return (0);
 	}
-	if (nb != 2)
-		return (0);
-	return (1);
-}
-
-static int	possible(t_save *save)
-{
-	if (save->nb_room < 2)
-		return (0);
-	if (save->nb_ant < 1 || save->nb_ant > 2147483647)
-		return (0);
-	if (save->nb_link < 1)
-		return (0);
-	return (1);
-}
-
-static int	check_all(char **line, t_save *save, t_room **room)
-{
-
-	if (!check_hashtag(line, room) || !parse_all_room(line, save, *room))
-		return (0);
-	if (!check_name(line, save) || !check_room_name(room, save))
-		return (0);
-	if (!parse_all_link(line, save, *room) || !possible(save))
-		return (0);
-	save->start = ft_strdup((*room)[0].name);
-	save->end = ft_strdup((*room)[1].name);
-	/*
-	ft_printf(PINK"test\n"CYN);
-	int		i;
-	i = -1;
-	int j;
-	while (++i < save->nb_room)
+	else if(save->ok_end == 1)
 	{
-		ft_printf("\nname : %s, x = %d, y = %d, id = %d\n", (*room)[i].name, (*room)[i].x, (*room)[i].y, (*room)[i].id);
-		j = -1;
-		while (++j < (*room)[i].nb_link)
-			ft_printf("link = %d  |  ", (*room)[i].link_id[j]);
+		if (check_room(line))
+		{
+			save->ok_end = 2;
+			init_room(line, room, save->nb_room);
+			save->nb_room++;
+		}
+		else
+			return (0);
 	}
-	*/
-	ft_printf(GRN"OK"RESET);
 	return (1);
 }
 
-int			parse_lemin(t_save *save, t_room **room)
+
+int			check_int(char *tmp)
 {
 	int		i;
+
+	i = 0;
+	while (tmp[i] && tmp[i] != ' ')
+		i++;
+	if (i > 11)
+		return (0);
+	if (ft_atoi(tmp) > 2147483647 || ft_atoi(tmp) < 0)
+		return (0);
+	return (1);
+}
+
+static int	check_all(char *line, t_save *save, t_room *room)
+{
+	if (save->nb_ant < 1)
+		return (0);
+	if (!ft_strcmp(line, "##start") && save->ok_start == 0)
+	{
+		save->ok_start++;
+		return (1);
+	}
+	else if (!ft_strcmp(line, "##end") && save->ok_end == 0)
+	{
+		save->ok_end++;
+		return (1);
+	}
+	else if (line[0] == '#')
+		return (1);
+	else if (save->ok_end > 2 || save->ok_start > 2)
+		return (0);
+	else if ((save->ok_start == 1 || save->ok_end == 1) &&
+			save->nb_link == 0 && check_hashtag(line, save, room))
+		return (1);
+	else if (save->nb_link == 0 && parse_room(line, save, room))
+		return (1);
+	else if (parse_link(line, save, room))
+		return (1);
+	return (0);
+}
+
+int			parse_lemin(t_save *save, t_room *room)
+{
+	int		i;
+	char	*final;
+	char	*tmp;
 	char	**line;
 
-	if (!(line = (char **)malloc(sizeof(char *) * 100)))
-		return (0);
-	ft_gnl(0, &(line[0]));
 	i = -1;
-	if (line[0] && just_nu(line[0]))
+	final = ft_strdup("");
+	while (ft_gnl(0, &tmp))
 	{
-		if (!(save->name = (char **)malloc(sizeof(char *) * 100)))
-			return (0);
-		save->nb_ant = ft_atoi(line[0]);
-		ft_strdel(&(line[0]));
-		while (ft_gnl(0, &(line[++i])))
-		{
-			if (i % 100 == 0 && i)
-				line = realloc_char(line, i);
-		}
-		if (!check_all(line, save, room))
-			ft_printf(RED"ERROR"RESET);
+		if (++i == 0 && just_nu(tmp) && check_int(tmp))
+			save->nb_ant = ft_atoi(tmp);
+		else if (i == 0)
+			return (ft_printf(RED"ERROR"RESET));
+		else if (i < 1 || !check_all(tmp, save, room))
+			break ;
+		final = ft_strjoinf1(final, tmp);
+		ft_strdel(&tmp);
+		final = ft_strjoinf1(final, "|");
 	}
+	if (save->ok_start == 2 && save->ok_end == 2 && save->nb_link > 0)
+		ft_printf(GRN"OK\n"RESET);
 	else
-		ft_printf(RED"ERROR"RESET);
-	free_save(save);
-	free(line);
+		return (ft_printf(RED"ERROR"RESET));
+	return (1);
+	i = -1;
+	while (++i < save->nb_room)
+		ft_printf("name = %s, x = %d, y = %d, nb_link = %d\n", room[i].name, room[i].x, room[i].y, room[i].nb_link);
+	line = ft_strsplit(final, '|');
+	ft_strdel(&final);
+	free_char(line);
+	/*
+	   ft_printf(GRN"OK"RESET);
+	   free_save(save);
+	   while (1)
+	   ;
+	   */
 	return (1);
 }
