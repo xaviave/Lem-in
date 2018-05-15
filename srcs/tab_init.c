@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/07 22:55:19 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/15 16:42:45 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,27 +21,6 @@ void		free_char(char **line)
 	while (line[++i])
 		ft_strdel(&(line[i]));
 	free(line);
-}
-
-void		realloc_room(t_room *room, int size)
-{
-	int		i;
-	t_room	*new;
-
-	i = -1;
-	if (!(new = (t_room *)malloc(sizeof(t_room) * (size + 101))))
-		return ;
-	while (++i < size)
-	{
-		new[i].name = ft_strdup(room[i].name);
-		new[i].x = room[i].x;
-		new[i].y = room[i].y;
-	}
-	i = -1;
-	while (++i < size)
-		ft_strdel(&(room[i].name));
-	free(room);
-	room = new;
 }
 
 int			*realloc_int(int *tab, int size)
@@ -81,4 +60,20 @@ void		free_room(t_room **room, int size)
 		ft_strdel(&room[i]->ant_name);
 	}
 	free(*room);
+}
+
+t_parse		*new_parse(char *str, int id)
+{
+	t_parse	*new;
+
+	if (!(new = (t_parse *)malloc(sizeof(t_parse))))
+		return (NULL);
+	new->line = ft_strdup(str);
+	new->name = NULL;
+	new->link1 = NULL;
+	new->link2 = NULL;
+	new->id = id;
+	new->link = 1;
+	new->link = 0;
+	return (new);
 }

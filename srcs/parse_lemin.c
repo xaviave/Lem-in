@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/14 15:15:05 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/15 16:56:38 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,17 +31,20 @@ static int	just_nu(char *str)
 	return (1);
 }
 
-static int	check_hashtag(char *line, t_save *save, t_room *room)
+static int	check_hashtag(char *line, t_save *save, t_parse *list)
 {
 	int		i;
 
-	i = -1;
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	list->name = ft_strsub(line, 0, i);
 	if (save->ok_start == 1)
 	{
 		if (check_room(line))
 		{
 			save->ok_start = 2;
-			init_room(line, room, save->nb_room);
+			list->room = 1;
 			save->nb_room++;
 		}
 		else
@@ -52,7 +55,7 @@ static int	check_hashtag(char *line, t_save *save, t_room *room)
 		if (check_room(line))
 		{
 			save->ok_end = 2;
-			init_room(line, room, save->nb_room);
+			list->room = 1;
 			save->nb_room++;
 		}
 		else
@@ -76,7 +79,7 @@ int			check_int(char *tmp)
 	return (1);
 }
 
-static int	check_all(char *line, t_save *save, t_room *room)
+static int	check_all(char *line, t_save *save, t_parse *list, t_parse *new)
 {
 	if (save->nb_ant < 1)
 		return (0);
@@ -95,11 +98,11 @@ static int	check_all(char *line, t_save *save, t_room *room)
 	else if (save->ok_end > 2 || save->ok_start > 2)
 		return (0);
 	else if ((save->ok_start == 1 || save->ok_end == 1) &&
-			save->nb_link == 0 && check_hashtag(line, save, room))
+			save->nb_link == 0 && check_hashtag(line, save, list))
 		return (1);
-	else if (save->nb_link == 0 && parse_room(line, save, room))
+	else if (save->nb_link == 0 && parse_room(line, save, new, list))
 		return (1);
-	else if (parse_link(line, save, room))
+	else if (parse_link(line, save, new, list))
 		return (1);
 	return (0);
 }
@@ -109,33 +112,56 @@ int			parse_lemin(t_save *save, t_room *room)
 	int		i;
 	char	*final;
 	char	*tmp;
-	char	**line;
+	t_parse	*list;
+	t_parse	*new;
 
 	i = -1;
 	final = ft_strdup("");
 	while (ft_gnl(0, &tmp))
 	{
-		if (++i == 0 && just_nu(tmp) && check_int(tmp))
-			save->nb_ant = ft_atoi(tmp);
-		else if (i == 0)
-			return (ft_printf(RED"ERROR"RESET));
-		else if (i < 1 || !check_all(tmp, save, room))
-			break ;
-		final = ft_strjoinf1(final, tmp);
+		if (++i == 0)
+		{
+			if (just_nu(tmp) && check_int(tmp))
+				save->nb_ant = ft_atoi(tmp);
+			else
+				return (ft_printf(RED"ERROR"RESET));
+			new = new_parse(tmp, i);
+			list = new;
+		}
+		else if (list && i)
+		{
+			list->next = new_parse(tmp, i);
+			if (!check_all(tmp, save, list, new))
+				break ;
+			list = list->next;
+		}
 		ft_strdel(&tmp);
-		final = ft_strjoinf1(final, "|");
 	}
 	if (save->ok_start == 2 && save->ok_end == 2 && save->nb_link > 0)
+	{
 		ft_printf(GRN"OK\n"RESET);
+	}
 	else
 		return (ft_printf(RED"ERROR"RESET));
 	return (1);
+	while (new)
+	{
+		ft_printf("%s | ", new->line);
+		new = new->next;
+	}
+	return (1);
+
+
+
+
+
+
+
+
 	i = -1;
 	while (++i < save->nb_room)
 		ft_printf("name = %s, x = %d, y = %d, nb_link = %d\n", room[i].name, room[i].x, room[i].y, room[i].nb_link);
-	line = ft_strsplit(final, '|');
 	ft_strdel(&final);
-	free_char(line);
 	/*
 	   ft_printf(GRN"OK"RESET);
 	   free_save(save);

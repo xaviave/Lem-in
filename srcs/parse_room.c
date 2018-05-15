@@ -6,33 +6,45 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:47 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/14 15:21:57 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/15 16:53:50 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-int			check_double_name(char *line, t_room *room, t_save *save)
+int			check_double_name(char *line, t_parse *new, int id)
 {
 	int		i;
 	char	*tmp;
+	t_parse	*list;
 
 	i = 0;
 	while (line[i] != ' ')
 		i++;
 	tmp = ft_strsub(line, 0, i);
-	i = -1;
-	while (++i < save->nb_room)
+	list = new;
+	while (list)
 	{
-		if (!ft_strcmp(tmp, room[i].name))
+		while (!list->name && list)
+			list = list->next;
+		if (list->id == id)
+		{
+			ft_strdel(&tmp);
+			return (1);
+		}
+		if (!ft_strcmp(tmp, list->name))
+		{
+			ft_strdel(&tmp);
 			return (0);
+		}
+		list = list->next;
 	}
 	ft_strdel(&tmp);
 	return (1);
 }
 
-int		check_name(char *line, t_save *save, t_room *room)
+int		check_name(char *line, t_parse *new, int id)
 {
 	int	i;
 
@@ -40,8 +52,8 @@ int		check_name(char *line, t_save *save, t_room *room)
 	while (line[++i] != ' ')
 		if (line[i] == 'L' || line[i] == '-')
 			return (0);
-	if (!check_double_name(line, room, save))
-			return (0);
+	if (!check_double_name(line, new, id))
+		return (0);
 	return (1);
 }
 
@@ -103,13 +115,17 @@ void		init_room(char *str, t_room *room, int pos)
 	ft_strdel(&save);
 }
 
-int		parse_room(char *line, t_save *save, t_room *room)
+int		parse_room(char *line, t_save *save, t_parse *new, t_parse *list)
 {
-	if (check_name(line, save, room) && check_room(line))
+	int		i;
+
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	list->name = ft_strsub(line, 0, i);
+	if (check_name(line, new, list->id) && check_room(line))
 	{
-		if (save->nb_room % 100 == 0)
-			realloc_room(room, save->nb_room);
-		init_room(line, room, save->nb_room);
+		list->room = 1;
 		save->nb_room++;
 	}
 	else
