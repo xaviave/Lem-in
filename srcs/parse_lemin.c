@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 15:39:46 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/17 17:37:37 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ static int	check_hashtag(char *line, t_save *save, t_parse *list, t_parse *new)
 		else
 			return (0);
 	}
-	else if(save->ok_end == 1)
+	else if (save->ok_end == 1)
 	{
 		if (parse_room(line, save, new, list))
 		{
@@ -56,21 +56,6 @@ static int	check_hashtag(char *line, t_save *save, t_parse *list, t_parse *new)
 		else
 			return (0);
 	}
-	return (1);
-}
-
-
-int			check_int(char *tmp)
-{
-	int		i;
-
-	i = 0;
-	while (tmp[i] && tmp[i] != ' ')
-		i++;
-	if (i > 11)
-		return (0);
-	if (ft_atoi(tmp) > 2147483647 || ft_atoi(tmp) < 0)
-		return (0);
 	return (1);
 }
 
@@ -126,22 +111,20 @@ t_room		*create_room(t_parse *new, t_save *save)
 	return (room);
 }
 
-int			parse_lemin(t_save *save, t_room *room)
+int			parse_lemin(t_save *save, t_parse *new, t_room **room)
 {
 	int		i;
 	char	*tmp;
 	t_parse	*list;
-	t_parse	*new;
 
 	i = -1;
 	while (ft_gnl(0, &tmp))
 	{
 		if (++i == 0)
 		{
-			if (just_nu(tmp) && check_int(tmp))
-				save->nb_ant = ft_atoi(tmp);
-			else
-				return (ft_printf(RED"ERROR"RESET));
+			if (!just_nu(tmp) || !check_int(tmp)
+					|| (save->nb_ant = ft_atoi(tmp)) < 1)
+				return (0);
 			new = new_parse(tmp, i);
 			list = new;
 		}
@@ -154,15 +137,5 @@ int			parse_lemin(t_save *save, t_room *room)
 		}
 		ft_strdel(&tmp);
 	}
-	if (save->ok_start == 2 && save->ok_end == 2 && save->nb_link > 0)
-	{
-		room = create_room(new, save);
-		ft_printf(GRN"OK"RESET);
-	}
-	else
-	{
-		ft_printf(RED"ERROR"RESET);
-		return (0);
-	}
-	return (1);
+	return (all_ok(save, new, room));
 }

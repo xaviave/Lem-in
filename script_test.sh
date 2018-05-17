@@ -1,3 +1,4 @@
+make
 echo "\nbig -> \033[32mOK\033[0m" > rendu
 ./lem-in < maps/big >> rendu
 echo "\nbig_36 -> \033[32mOK\033[0m" >> rendu
@@ -62,3 +63,4 @@ echo "\nunknownroom -> \033[32mOK\033[0m" >> rendu
 ./lem-in < maps/unknownroom >> rendu
 echo "\nwhitespaces" >> rendu
 ./lem-in < maps/whitespaces >> rendu
+cat rendu

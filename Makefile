@@ -6,7 +6,7 @@
 #    By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/20 15:30:33 by xamartin     #+#   ##    ##    #+#        #
-#    Updated: 2018/04/24 14:54:56 by xamartin    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/17 15:55:55 by xamartin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -30,6 +30,7 @@ OBJS_PATH = ./srcs/
 FILES = main_lemin.c\
 		parse_lemin.c\
 		parse_room.c\
+		parse_room2.c\
 		parse_link.c\
 		tab_init.c\
 

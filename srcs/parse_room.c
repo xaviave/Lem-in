@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:47 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 15:19:36 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/17 16:01:00 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,22 +29,15 @@ int			check_double_name(char *line, t_parse *new, int id)
 		while (!list->name && list)
 			list = list->next;
 		if (list->id == id)
-		{
-			ft_strdel(&tmp);
-			return (1);
-		}
+			return (free_str(tmp, NULL, 1));
 		if (!ft_strcmp(tmp, list->name))
-		{
-			ft_strdel(&tmp);
-			return (0);
-		}
+			return (free_str(tmp, NULL, 0));
 		list = list->next;
 	}
-	ft_strdel(&tmp);
-	return (1);
+	return (free_str(tmp, NULL, 1));
 }
 
-int		check_name(char *line, t_parse *new, int id)
+int			check_name(char *line, t_parse *new, int id)
 {
 	int	i;
 
@@ -57,7 +50,7 @@ int		check_name(char *line, t_parse *new, int id)
 	return (1);
 }
 
-int		check_room(char *str)
+int			check_room(char *str)
 {
 	int	i;
 
@@ -68,9 +61,8 @@ int		check_room(char *str)
 		return (0);
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
-	if (!check_int(&str[i]))
+	if (!check_int(&str[i--]))
 		return (0);
-	i--;
 	while (str[++i] && str[i] != ' ' && str[i] != '\t')
 		if (!ft_isdigit(str[i]))
 			return (0);
@@ -115,7 +107,7 @@ void		init_room(char *str, t_room *room, int pos)
 	ft_strdel(&save);
 }
 
-int		parse_room(char *line, t_save *save, t_parse *new, t_parse *list)
+int			parse_room(char *line, t_save *save, t_parse *new, t_parse *list)
 {
 	int		i;
 
