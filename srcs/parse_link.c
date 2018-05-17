@@ -6,61 +6,50 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:40 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/15 17:43:36 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/17 15:19:42 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-/*
-   static void	fill_link(char *here, char *link, t_room *room, t_save *save)
-   {
-   int		i;
-   int		nb;
+static void	fill_link(char *here, char *link, t_room *room, t_save *save)
+{
+	int		i;
+	int		nb;
 
-   i = -1;
-   while (++i < save->nb_room)
-   if (!ft_strcmp(room[i].name, here))
-   nb = i;
-   i = -1;
-   while (++i < save->nb_room)
-   if (!ft_strcmp(room[i].name, link))
-   break ;
-   if (!room[nb].nb_link)
-   {
-   if (!(room[nb].link_id = (int *)malloc(sizeof(int) * 1)))
-   return ;
-   room[nb].link_id[0] = room[i].id;
-   room[nb].nb_link++;
-   }
-   else
-   {
-   room[nb].link_id = realloc_int(room[nb].link_id, room[nb].nb_link);
-   room[nb].link_id[room[nb].nb_link] = room[i].id;
-   room[nb].nb_link++;
-   }
-   }
+	i = -1;
+	while (++i < save->nb_room)
+		if (!ft_strcmp(room[i].name, here))
+			nb = i;
+	i = -1;
+	while (++i < save->nb_room)
+		if (!ft_strcmp(room[i].name, link))
+			break ;
+	if (!room[nb].nb_link)
+	{
+		if (!(room[nb].link_id = (int *)malloc(sizeof(int) * 1)))
+			return ;
+		room[nb].link_id[0] = room[i].id;
+		room[nb].nb_link++;
+	}
+	else
+	{
+		room[nb].link_id = realloc_int(room[nb].link_id, room[nb].nb_link);
+		room[nb].link_id[room[nb].nb_link] = room[i].id;
+		room[nb].nb_link++;
+	}
+}
 
-   static void	init_link(char *line, t_room *room, t_save *save)
-   {
-   int		i;
-   int		good;
-   char	*first;
-   char	*second;
-
-   i = 0;
-   good = 0;
-   while (line[i] && line[i] != '-')
-   i++;
-   first = ft_strsub(line, 0, i);
-   second = ft_strsub(line, i + 1, ft_strlen(line));
-   fill_link(first, second, room, save);
-   fill_link(second, first, room, save);
-   ft_strdel(&first);
-   ft_strdel(&second);
-   }
-   */
+void	init_link(t_parse *list, t_room *room, t_save *save)
+{
+	fill_link(list->link1, list->link2, room, save);
+	fill_link(list->link2, list->link1, room, save);
+	ft_strdel(&(list->link1));
+	ft_strdel(&(list->link2));
+	list->link1 = NULL;
+	list->link2 = NULL;
+}
 
 int			check_link(char *line, t_parse *new, int id)
 {
@@ -101,9 +90,8 @@ int			parse_link(char *line, t_save *save, t_parse *new, t_parse *list)
 		i++;
 	list->link1 = ft_strsub(line, 0, i);
 	list->link2= ft_strsub(line, i + 1, ft_strlen(line));
-	if (!ft_strcmp(list->link1, list->link2))
-		return (0);
-	if (!check_link(line, new, list->id))
+	if (!ft_strcmp(list->link1, list->link2)
+			|| !check_link(line, new, list->id))
 		return (0);
 	save->nb_link += 2;
 	list->link = 1;

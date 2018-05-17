@@ -1,0 +1,65 @@
+
+big -> [32mOK[0m
+[32mOK[0m
+big_36 -> [32mOK[0m
+[32mOK[0m
+bigants
+[38;5;196mERROR[0m
+comments -> [32mOK[0m
+[32mOK[0m
+coor
+[38;5;196mERROR[0m
+duplicatepipe
+[32mOK[0m
+duplicatepipe1
+[32mOK[0m
+empty
+[38;5;196mERROR[0m
+empty_line
+[38;5;196mERROR[0m
+illegalname
+[38;5;196mERROR[0m
+illegalname1
+[38;5;196mERROR[0m
+in0 -> [32mOK[0m
+[32mOK[0m
+invalidcommand -> [32mOK[0m
+[32mOK[0m
+invalidcommand1
+[38;5;196mERROR[0m
+loop
+[32mOK[0m
+loop1
+[32mOK[0m
+loop2
+[32mOK[0m
+negants
+[38;5;196mERROR[0m
+noants
+[38;5;196mERROR[0m
+noend
+[38;5;196mERROR[0m
+nopath
+[38;5;196mERROR[0m
+nostart
+[38;5;196mERROR[0m
+overflow
+[38;5;196mERROR[0m
+samecoor -> [32mOK[0m
+[32mOK[0m
+shortest -> [32mOK[0m
+[32mOK[0m
+simple -> [32mOK[0m
+[32mOK[0m
+simple1 -> [32mOK[0m
+[32mOK[0m
+simple2 -> [32mOK[0m
+[32mOK[0m
+startisend
+[38;5;196mERROR[0m
+underflow
+[38;5;196mERROR[0m
+unknownroom -> [32mOK[0m
+[32mOK[0m
+whitespaces
+[38;5;196mERROR[0m

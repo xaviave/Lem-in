@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 15:51:56 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/07 23:39:19 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/17 15:38:19 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@ static void	init_save(t_save *save)
 	save->start = NULL;
 	save->end = NULL;
 	save->name = NULL;
+	save->line = NULL;
 }
 
 int			main(void)
