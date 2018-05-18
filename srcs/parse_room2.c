@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/17 15:54:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 17:53:35 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 13:30:30 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,13 +35,15 @@ int			check_int(char *tmp)
 	return (1);
 }
 
-static void	free_parse(t_parse *new)
+static void	free_parse(t_parse *new, t_save *save)
 {
+	int		i;
 	t_parse *tmp;
 	t_parse *tmp2;
 
+	i = -1;
 	tmp = new;
-	while (tmp)
+	while (tmp && ++i < save->nb_line)
 	{
 		tmp2 = tmp->next;
 		if (tmp->line)
@@ -59,11 +61,12 @@ int			all_ok(t_save *save, t_parse *new, t_room **room)
 	int	ok;
 
 	ok = 0;
-	if (save->ok_start == 2 || save->ok_end == 2 || save->nb_link > 0)
+		ft_printf("%d %d %d", save->ok_start, save->ok_end, save->nb_link);
+	if (save->ok_start == 2 && save->ok_end == 2 && save->nb_link > 0)
 	{
 		*room = create_room(new, save);
 		ok = 1;
 	}
-	free_parse(new);
+	free_parse(new, save);
 	return (ok);
 }

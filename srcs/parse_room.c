@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:47 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 16:01:00 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 10:51:07 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,8 +119,7 @@ int			parse_room(char *line, t_save *save, t_parse *new, t_parse *list)
 	{
 		list->room = 1;
 		save->nb_room++;
+		return (1);
 	}
-	else
-		return (0);
-	return (1);
+	return (0);
 }

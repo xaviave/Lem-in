@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 15:54:14 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 13:30:17 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,14 +39,12 @@ int			*realloc_int(int *tab, int size)
 
 void		free_save(t_save *save)
 {
-	int		i;
-
-	i = -1;
-	while (++i < save->nb_room)
-		ft_strdel(&save->name[i]);
-	free(save->name);
-	ft_strdel(&save->start);
-	ft_strdel(&save->start);
+	if (save->start)
+		ft_strdel(&save->start);
+	if (save->end)
+		ft_strdel(&save->end);
+	if (save->line)
+		ft_strdel(&save->line);
 }
 
 void		free_room(t_room **room, int size)
@@ -56,10 +54,13 @@ void		free_room(t_room **room, int size)
 	i = -1;
 	while (++i < size)
 	{
-		ft_strdel(&room[i]->name);
-		ft_strdel(&room[i]->ant_name);
+	//	if (room[i]->nb_link)
+	//		free(room[i]->link_id);
+	//	ft_strdel(&room[i]->name);
+	//	if (room[i]->ant_name)
+	//		ft_strdel(&room[i]->ant_name);
 	}
-	free(*room);
+	free(room);
 }
 
 t_parse		*new_parse(char *str, int id)

@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 17:37:37 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 13:27:56 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -137,5 +137,6 @@ int			parse_lemin(t_save *save, t_parse *new, t_room **room)
 		}
 		ft_strdel(&tmp);
 	}
+	save->nb_line = i;
 	return (all_ok(save, new, room));
 }

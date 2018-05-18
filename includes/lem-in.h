@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/17 09:15:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/17 17:46:25 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 13:25:51 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,7 @@ typedef struct		s_save
 	int				nb_ant;
 	int				nb_room;
 	int				nb_link;
+	int				nb_line;
 	char			*line;
 }					t_save;
 
