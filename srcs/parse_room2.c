@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/17 15:54:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 13:30:30 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 13:31:26 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,7 +61,6 @@ int			all_ok(t_save *save, t_parse *new, t_room **room)
 	int	ok;
 
 	ok = 0;
-		ft_printf("%d %d %d", save->ok_start, save->ok_end, save->nb_link);
 	if (save->ok_start == 2 && save->ok_end == 2 && save->nb_link > 0)
 	{
 		*room = create_room(new, save);
