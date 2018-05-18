@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 15:51:56 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 13:27:23 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 14:35:59 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ static void	init_save(t_save *save)
 	save->ok_end = 0;
 	save->start = NULL;
 	save->end = NULL;
-	save->name = NULL;
 	save->line = NULL;
 }
 
@@ -34,16 +33,16 @@ int			main(void)
 
 	new = NULL;
 	init_save(&save);
-	if (!(room = (t_room *)malloc(sizeof(t_room) * 101)))
-		return (ft_printf("ERROR\n"));
 	if (!parse_lemin(&save, new, &room))
 	{
 		/*
-		   free room
+		   free_room(&room, save.nb_room);
 		   free save
 		   */
 		return (ft_printf(RED"ERROR"RESET));
 	}
+	free_room(room, save.nb_room);
+	free_save(&save);
 	/*
 	int i = -1;
 	int j;
@@ -57,5 +56,8 @@ int			main(void)
 	}
 	*/
 	ft_printf(GRN"OK"RESET);
+	return (0);
+	while (1)
+		;
 	return (0);
 }

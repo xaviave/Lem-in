@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/17 09:15:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 13:25:51 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 14:27:00 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,6 @@ typedef struct		s_save
 	char			*end;
 	int				ok_start;
 	int				ok_end;
-	char			**name;
 	int				nb_ant;
 	int				nb_room;
 	int				nb_link;
@@ -53,9 +52,8 @@ typedef struct		s_room
 	char			*ant_name;
 }					t_room;
 
-void				free_char(char **line);
 void				free_save(t_save *save);
-void				free_room(t_room **room, int size);
+void				free_room(t_room *room, int size);
 int					free_str(char *str, char *str2, int ret);
 int					*realloc_int(int *tab, int size);
 t_parse				*new_parse(char *str, int id);

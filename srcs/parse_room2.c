@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/17 15:54:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 13:31:26 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 14:35:35 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,16 +42,15 @@ static void	free_parse(t_parse *new, t_save *save)
 	t_parse *tmp2;
 
 	i = -1;
-	tmp = new;
-	while (tmp && ++i < save->nb_line)
+	tmp2 = new;
+	while (tmp2 && ++i <= save->nb_line)
 	{
-		tmp2 = tmp->next;
-		if (tmp->line)
-			ft_strdel(&tmp->line);
-		if (tmp->name)
-			ft_strdel(&tmp->name);
-		free(tmp);
-		tmp = tmp2;
+		tmp = tmp2->next;
+		ft_strdel(&tmp2->line);
+		if (tmp2->name)
+			ft_strdel(&tmp2->name);
+		free(tmp2);
+		tmp2 = tmp;
 	}
 	new = NULL;
 }

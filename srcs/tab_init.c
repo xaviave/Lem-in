@@ -6,22 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 13:31:18 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/18 14:26:28 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
-
-void		free_char(char **line)
-{
-	int		i;
-
-	i = -1;
-	while (line[++i])
-		ft_strdel(&(line[i]));
-	free(line);
-}
 
 int			*realloc_int(int *tab, int size)
 {
@@ -47,18 +37,18 @@ void		free_save(t_save *save)
 		ft_strdel(&save->line);
 }
 
-void		free_room(t_room **room, int size)
+void		free_room(t_room *room, int size)
 {
 	int		i;
 
 	i = -1;
 	while (++i < size)
 	{
-	//	if (room[i]->nb_link)
-	//		free(room[i]->link_id);
-	//	ft_strdel(&room[i]->name);
-	//	if (room[i]->ant_name)
-	//		ft_strdel(&room[i]->ant_name);
+		if (room[i].nb_link)
+			free(room[i].link_id);
+		ft_strdel(&room[i].name);
+		if (room[i].ant_name)
+			ft_strdel(&room[i].ant_name);
 	}
 	free(room);
 }
