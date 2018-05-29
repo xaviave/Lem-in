@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:47 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:38:34 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/23 18:24:50 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,7 @@ int			check_name(char *line, t_parse *new, int id)
 
 	i = -1;
 	while (line[++i] != ' ')
-		if (line[i] == 'L' || line[i] == '-')
+		if (!line[i] || line[i] == 'L' || line[i] == '-')
 			return (0);
 	if (!check_double_name(line, new, id))
 		return (0);
@@ -104,6 +104,7 @@ void		init_room(char *str, t_room *room, int pos)
 		j++;
 	save = ft_strsub(str, i, j);
 	room[pos].y = ft_atoi(save);
+	room[pos].nb_link = 0;
 	ft_strdel(&save);
 }
 

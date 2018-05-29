@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 15:51:56 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:35:59 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/23 18:23:52 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@ static void	init_save(t_save *save)
 	save->nb_link = 0;
 	save->ok_start = 0;
 	save->ok_end = 0;
+	save->start_id = 0;
+	save->end_id = 0;
 	save->start = NULL;
 	save->end = NULL;
 	save->line = NULL;
@@ -27,37 +29,24 @@ static void	init_save(t_save *save)
 
 int			main(void)
 {
+	int		error;
 	t_save	save;
 	t_room	*room;
 	t_parse *new;
 
 	new = NULL;
 	init_save(&save);
-	if (!parse_lemin(&save, new, &room))
+	if ((error = parse_lemin(&save, new, &room)) != 1)
 	{
-		/*
-		   free_room(&room, save.nb_room);
-		   free save
-		   */
+		//leak possible
+		free_save(&save);
 		return (ft_printf(RED"ERROR"RESET));
 	}
+	find_path(&save, room);
+	return (0);
+	ft_printf("%s", save.line);
 	free_room(room, save.nb_room);
 	free_save(&save);
-	/*
-	int i = -1;
-	int j;
-	while (++i < save.nb_room)
-	{
-		j = -1;
-		ft_printf("\n nom = %s | id = %d | nb_link = %d | x = %d | y = %d | link name = ", 
-				room[i].name, room[i].id, room[i].nb_link, room[i].x, room[i].y);
-		while (++j < room[i].nb_link)
-			ft_printf("%d // ", room[i].link_id[j]);
-	}
-	*/
 	ft_printf(GRN"OK"RESET);
-	return (0);
-	while (1)
-		;
 	return (0);
 }

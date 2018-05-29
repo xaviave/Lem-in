@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:38:27 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/23 18:24:39 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -104,7 +104,7 @@ t_room		*create_room(t_parse *new, t_save *save)
 			init_room(list->line, room, i);
 		else if (list->link)
 			init_link(list, room, save);
-		list->line = ft_strjoin(list->line, "\n");
+		list->line = ft_strjoinf1(list->line, "\n");
 		save->line = ft_strjoinf1(save->line, list->line);
 		list = list->next;
 	}
@@ -124,7 +124,7 @@ int			parse_lemin(t_save *save, t_parse *new, t_room **room)
 		{
 			if (!just_nu(tmp) || !check_int(tmp) 
 					|| (save->nb_ant = ft_atoi(tmp)) < 1)
-				return (0);
+				return (free_str(tmp, NULL, 2));
 			new = new_parse(tmp, i);
 			list = new;
 		}

@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:40 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:38:40 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/23 18:24:13 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -90,7 +90,10 @@ int			parse_link(char *line, t_save *save, t_parse *new, t_parse *list)
 	list->link2 = ft_strsub(line, i + 1, ft_strlen(line));
 	if (!ft_strcmp(list->link1, list->link2)
 			|| !check_link(line, new, list->id))
+	{
+		free_str(list->link1, list->link2, 0);
 		return (0);
+	}
 	save->nb_link += 2;
 	list->link = 1;
 	return (1);

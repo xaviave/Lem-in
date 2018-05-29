@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:26:28 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/22 15:44:50 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,8 @@ void		free_room(t_room *room, int size)
 	{
 		if (room[i].nb_link)
 			free(room[i].link_id);
-		ft_strdel(&room[i].name);
+		if (room[i].name)
+			ft_strdel(&room[i].name);
 		if (room[i].ant_name)
 			ft_strdel(&room[i].ant_name);
 	}
@@ -64,7 +65,7 @@ t_parse		*new_parse(char *str, int id)
 	new->link1 = NULL;
 	new->link2 = NULL;
 	new->id = id;
-	new->link = 1;
 	new->link = 0;
+	new->room = 0;
 	return (new);
 }

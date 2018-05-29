@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/17 09:15:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/18 14:27:00 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/29 14:02:38 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,17 +28,28 @@ typedef struct		s_parse
 	struct s_parse	*next;
 }					t_parse;
 
+typedef struct		s_path
+{
+	int				id;
+	int				gene;
+	struct s_path	*next;
+}					t_path;
+
 typedef struct		s_save
 {
 	char			*start;
+	int				start_id;
 	char			*end;
+	int				end_id;
+	char			*line;
 	int				ok_start;
 	int				ok_end;
 	int				nb_ant;
 	int				nb_room;
 	int				nb_link;
 	int				nb_line;
-	char			*line;
+	int				nb_gene;
+	int				**path;
 }					t_save;
 
 typedef struct		s_room
@@ -68,5 +79,6 @@ void				init_link(t_parse *list, t_room *room, t_save *save);
 int					parse_lemin(t_save *save, t_parse *new, t_room **room);
 int					parse_room(char *line, t_save *save, t_parse *new, t_parse *list);
 int					parse_link(char *line, t_save *save, t_parse *new, t_parse *list);
+int					find_path(t_save *save, t_room *room);
 
 #endif

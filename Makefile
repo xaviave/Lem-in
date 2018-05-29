@@ -6,7 +6,7 @@
 #    By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/20 15:30:33 by xamartin     #+#   ##    ##    #+#        #
-#    Updated: 2018/05/17 15:55:55 by xamartin    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/22 15:18:12 by xamartin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -33,6 +33,7 @@ FILES = main_lemin.c\
 		parse_room2.c\
 		parse_link.c\
 		tab_init.c\
+		find_path.c\
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
