@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/17 09:15:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/29 14:02:38 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/07 15:11:24 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,11 @@ typedef struct		s_save
 	int				nb_link;
 	int				nb_line;
 	int				nb_gene;
+	int				gene;
+	int				nb_path;
+	int				nb_fill;
+	int				*verif;
+	int				**fill;
 	int				**path;
 }					t_save;
 
@@ -60,7 +65,7 @@ typedef struct		s_room
 	int				nb_link;
 	int				x;
 	int				y;
-	char			*ant_name;
+	int				ant;
 }					t_room;
 
 void				free_save(t_save *save);
@@ -80,5 +85,21 @@ int					parse_lemin(t_save *save, t_parse *new, t_room **room);
 int					parse_room(char *line, t_save *save, t_parse *new, t_parse *list);
 int					parse_link(char *line, t_save *save, t_parse *new, t_parse *list);
 int					find_path(t_save *save, t_room *room);
+int					*tab_filler(int fill, int length);
+int					prev_id(int id, t_room *room, t_save *save);
+void				create_new_path(t_save *save, t_room *room, int id);
+void				fill_tab(t_path *path, t_save *save, t_room *room);
+t_path				*add_link(int id, t_save *save, t_room *room);
+t_path				*remove_first(t_path *path);
+void				free_path(t_path *path);
+void				free_tab(t_save *save);
+int					*copy_tab(int *tab, int size);
+int					good_path(t_save *save);
+int					next_gene(t_path *path, t_room *room, t_save *save);
+int					find_nb_gene(t_path *path, int gene);
+int					tabcmp(int nu, t_save *save);
+void				aff_path(t_save *save, t_room *room);
+void				aff_ant(t_save *save, t_room *room, int space);
+int					path_size(int *path, int max);
 
 #endif

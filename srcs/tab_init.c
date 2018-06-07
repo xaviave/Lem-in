@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/22 15:44:50 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/07 14:27:19 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,12 @@ void		free_save(t_save *save)
 		ft_strdel(&save->end);
 	if (save->line)
 		ft_strdel(&save->line);
+	if (save->path)
+		free(save->path);
+	if (save->verif)
+		free(save->verif);
+	if (save->fill)
+		free_tab(save);
 }
 
 void		free_room(t_room *room, int size)
@@ -48,8 +54,6 @@ void		free_room(t_room *room, int size)
 			free(room[i].link_id);
 		if (room[i].name)
 			ft_strdel(&room[i].name);
-		if (room[i].ant_name)
-			ft_strdel(&room[i].ant_name);
 	}
 	free(room);
 }
