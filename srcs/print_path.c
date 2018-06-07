@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/07 15:09:33 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/07 15:10:11 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/07 15:14:31 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 
 static void	send_first_ant(t_save *save, t_room *room, int space, int path)
 {
-	inti;
-	intmax;
+	int		i;
+	int		max;
 
 	i = -1;
 	if (save->nb_ant < path_size(save->path[path], save->nb_room)
@@ -39,7 +39,7 @@ static void	send_first_ant(t_save *save, t_room *room, int space, int path)
 
 void		aff_ant(t_save *save, t_room *room, int space)
 {
-	inti;
+	int		i;
 
 	i = -1;
 	while (++i < save->nb_path)

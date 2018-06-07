@@ -6,7 +6,7 @@
 #    By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/04/20 15:30:33 by xamartin     #+#   ##    ##    #+#        #
-#    Updated: 2018/06/05 13:11:07 by xamartin    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/06/07 15:13:46 by xamartin    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -38,6 +38,7 @@ FILES = main_lemin.c\
 		find_path3.c\
 		find_init.c\
 		aff_path.c\
+		print_path.c\
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
