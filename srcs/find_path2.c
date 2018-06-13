@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 16:15:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 13:24:26 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/11 15:47:49 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,8 @@ void		create_new_path(t_save *save, t_room *room, int id)
 		tmp = prev_id(id, room, save);
 		if (tmp > -1)
 		{
-			save->fill[save->nb_fill] = copy_tab(save->fill[tmp], save->nb_room);
+			save->fill[save->nb_fill] = copy_tab(save->fill[tmp],
+					save->nb_room);
 			save->fill[save->nb_fill][save->nb_gene] = id;
 		}
 		else
@@ -79,7 +80,7 @@ int			tabcmp(int nu, t_save *save)
 
 	i = -1;
 	ok = 0;
-	while(++i < save->nb_path)
+	while (++i < save->nb_path)
 	{
 		j = -1;
 		while (++j < save->nb_room)

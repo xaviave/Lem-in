@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/23 13:44:10 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/07 14:27:19 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 19:59:54 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,5 +71,6 @@ t_parse		*new_parse(char *str, int id)
 	new->id = id;
 	new->link = 0;
 	new->room = 0;
+	new->next = NULL;
 	return (new);
 }

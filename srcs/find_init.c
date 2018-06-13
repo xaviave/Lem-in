@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/04 14:36:09 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 16:53:37 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/11 15:58:50 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,6 @@ t_path		*remove_first(t_path *path)
 		new = path->next;
 	free(path);
 	return (new);
-
 }
 
 int			*tab_filler(int fill, int length)

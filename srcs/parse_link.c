@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:40 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/23 18:24:13 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 19:29:37 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,8 @@ int			parse_link(char *line, t_save *save, t_parse *new, t_parse *list)
 	int		i;
 
 	i = 0;
+	if (!ft_strcmp(line, ""))
+		return (0);
 	while (line[i] && line[i] != '-')
 		i++;
 	list->link1 = ft_strsub(line, 0, i);

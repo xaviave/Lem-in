@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 15:51:56 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 13:39:23 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 18:37:02 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,10 @@ static void	init_save(t_save *save)
 	save->fill = NULL;
 }
 
+/*
+** leak possible cas d erreur
+*/
+
 int			main(void)
 {
 	t_save	save;
@@ -40,18 +44,18 @@ int			main(void)
 	init_save(&save);
 	if (parse_lemin(&save, new, &room) != 1)
 	{
-		//leak possible
 		free_save(&save);
 		return (ft_printf(RED"ERROR"RESET));
 	}
 	find_path(&save, room);
 	if (save.nb_path)
 	{
+		if (save.fill && save.nb_fill)
+			free_tab(&save);
 		aff_path(&save, room);
-		ft_printf(GRN"OK"RESET);
 		return (0);
 	}
 	free_room(room, save.nb_room);
 	free_save(&save);
-	return (ft_printf(RED"ERROR 1"RESET));
+	return (ft_printf(RED"ERROR"RESET));
 }

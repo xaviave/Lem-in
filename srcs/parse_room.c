@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:47 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 17:03:33 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 18:27:26 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -115,6 +115,8 @@ int			parse_room(char *line, t_save *save, t_parse *new, t_parse *list)
 	i = 0;
 	while (line[i] && line[i] != ' ')
 		i++;
+	if (list->name)
+		ft_strdel(&(list->name));
 	list->name = ft_strsub(line, 0, i);
 	if (check_name(line, new, list->id) && check_room(line))
 	{

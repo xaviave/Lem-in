@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 16:18:46 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/07 14:27:57 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/11 15:48:10 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,26 +43,29 @@ t_path		*add_link(int id, t_save *save, t_room *room)
 	return (new);
 }
 
+static void	end_start_ok(t_save *save, int id)
+{
+	if (id == save->start_id)
+		save->start_ok++;
+	if (id == save->end_id)
+		save->end_ok++;
+}
+
 int			good_path(t_save *save)
 {
 	int		i;
 	int		j;
-	int		end;
-	int		start;
 
 	i = -1;
 	while (++i < save->nb_fill)
 	{
 		j = -1;
-		end = 0;	
-		start = 0;
+		save->end_ok = 0;
+		save->start_ok = 0;
 		while (++j < save->nb_room)
 		{
-			if (save->fill[i][j] == save->start_id)
-				start++;
-			if (save->fill[i][j] == save->end_id)
-				end++;
-			if (start == 1 && end == 1)
+			end_start_ok(save, save->fill[i][j]);
+			if (save->start_ok == 1 && save->end_ok == 1)
 			{
 				if (!tabcmp(i, save))
 					save->path[save->nb_path] =
@@ -76,7 +79,7 @@ int			good_path(t_save *save)
 	return (0);
 }
 
-int		next_gene(t_path *path, t_room *room, t_save *save)
+int			next_gene(t_path *path, t_room *room, t_save *save)
 {
 	int		j;
 	int		nb;

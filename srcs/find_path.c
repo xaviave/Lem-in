@@ -6,14 +6,14 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/22 13:33:49 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/07 14:27:51 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 14:22:23 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-static void init_verif(t_save *save, int ok)
+static void	init_verif(t_save *save, int ok)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ static void init_verif(t_save *save, int ok)
 
 static void	init_start_end(t_save *save, t_room *room)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	while (++i < save->nb_room)
@@ -81,7 +81,7 @@ static int	fill_path(t_path *path, t_room *room, t_save *save)
 	return (0);
 }
 
-int	find_path(t_save *save, t_room *room)
+int			find_path(t_save *save, t_room *room)
 {
 	int		i;
 	t_path	*path;

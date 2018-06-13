@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 19:00:24 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/05 17:03:17 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/13 18:37:46 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -122,7 +122,7 @@ int			parse_lemin(t_save *save, t_parse *new, t_room **room)
 	{
 		if (++i == 0)
 		{
-			if (!just_nu(tmp) || !check_int(tmp) 
+			if (!just_nu(tmp) || !check_int(tmp)
 					|| (save->nb_ant = ft_atoi(tmp)) < 1)
 				return (free_str(tmp, NULL, 2));
 			new = new_parse(tmp, i);
@@ -137,6 +137,5 @@ int			parse_lemin(t_save *save, t_parse *new, t_room **room)
 		}
 		ft_strdel(&tmp);
 	}
-	save->nb_line = i;
-	return (all_ok(save, new, room));
+	return (all_ok(save, new, room, i));
 }
