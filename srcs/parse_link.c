@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 14:48:40 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/13 19:29:37 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:57:05 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 static void	fill_link(char *here, char *link, t_room *room, t_save *save)
 {

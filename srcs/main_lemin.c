@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 15:51:56 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/13 18:37:02 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:56:52 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 static void	init_save(t_save *save)
 {
@@ -29,10 +29,6 @@ static void	init_save(t_save *save)
 	save->verif = NULL;
 	save->fill = NULL;
 }
-
-/*
-** leak possible cas d erreur
-*/
 
 int			main(void)
 {

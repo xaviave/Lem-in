@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/17 15:54:36 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/13 20:08:04 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:57:16 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 int			free_str(char *str, char *str2, int ret)
 {

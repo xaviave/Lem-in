@@ -6,7 +6,7 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/17 09:15:59 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/11 15:46:38 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:58:10 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,8 +84,10 @@ int					all_ok(t_save *save, t_parse *new, t_room **room, int line);
 void				init_room(char *line, t_room *room, int pos);
 void				init_link(t_parse *list, t_room *room, t_save *save);
 int					parse_lemin(t_save *save, t_parse *new, t_room **room);
-int					parse_room(char *line, t_save *save, t_parse *new, t_parse *list);
-int					parse_link(char *line, t_save *save, t_parse *new, t_parse *list);
+int					parse_room(char *line, t_save *save, t_parse *new,
+		t_parse *list);
+int					parse_link(char *line, t_save *save, t_parse *new,
+		t_parse *list);
 int					find_path(t_save *save, t_room *room);
 int					*tab_filler(int fill, int length);
 int					prev_id(int id, t_room *room, t_save *save);

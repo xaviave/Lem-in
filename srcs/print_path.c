@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/07 15:09:33 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/11 18:32:57 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:57:22 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 static int	send_first_ant(t_save *save, t_room *room, int *space, int p)
 {

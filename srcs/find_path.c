@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/22 13:33:49 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/13 14:22:23 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:56:26 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 static void	init_verif(t_save *save, int ok)
 {

@@ -6,12 +6,12 @@
 /*   By: xamartin <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/29 16:18:46 by xamartin     #+#   ##    ##    #+#       */
-/*   Updated: 2018/06/11 15:48:10 by xamartin    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/06/18 09:56:41 by xamartin    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 int			find_nb_gene(t_path *path, int gene)
 {
